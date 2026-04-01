@@ -1,10 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=index.html">
-    <title>Redirecting...</title>
+<meta charset="UTF-8">
+<title>Secretman Game</title>
+
+<style>
+    body {
+        margin: 0;
+        background: black;
+        color: white;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    /* Center everything */
+    .screen {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 60px;
+        margin-bottom: 20px;
+        letter-spacing: 3px;
+    }
+
+    button {
+        padding: 15px 40px;
+        font-size: 20px;
+        background: white;
+        color: black;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: red;
+        color: white;
+    }
+
+    /* Hidden game screen */
+    #game {
+        display: none;
+        padding: 40px;
+    }
+
+    #text {
+        font-size: 22px;
+        max-width: 800px;
+        line-height: 1.6;
+    }
+
+    /* Skull emoji */
+    img {
+        margin-top: 20px;
+    }
+</style>
 </head>
+
 <body>
+
+<!-- START SCREEN -->
+<div id="start" class="screen">
+    <h1>SECRETMAN</h1>
+    <button onclick="startGame()">PLAY</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="game">
+    <div id="text"></div>
+
+    <!-- Tarikul Islam skull -->
+    <img src="https://raw.githubusercontent.com/tarikul-islam/Animated-Fluent-Emojis/master/Emojis/Objects/Skull.gif" width="40">
+</div>
+
+<script>
+    const story = [
+        "Loading...",
+        "A man known only as Secretman has disappeared.",
+        "No records. No identity. No trace.",
+        "The last thing found was a newspaper.",
+        "Inside it... something impossible.",
+        "A baby... reading.",
+        "The child did not cry.",
+        "It only stared at the page.",
+        "And then...",
+        "It looked at YOU."
+    ];
+
+    let index = 0;
+
+    function startGame() {
+        document.getElementById("start").style.display = "none";
+        document.getElementById("game").style.display = "block";
+        typeText();
+    }
+
+    function typeText() {
+        if (index < story.length) {
+            document.getElementById("text").innerHTML = story[index];
+            index++;
+            setTimeout(typeText, 2000);
+        }
+    }
+</script>
+
 </body>
 </html>
